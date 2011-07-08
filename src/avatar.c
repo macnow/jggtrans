@@ -106,8 +106,3 @@ char* get_avatar(char* uin)
   else
    return "0";
 }
-/*int main()
-{
-	printf("%s",get_avatar("3101713"));
-	return 0;
-}*/

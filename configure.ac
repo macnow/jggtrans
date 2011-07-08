@@ -18,6 +18,7 @@ CFLAGS="$CFLAGS -Wall"
 AM_PATH_GLIB_2_0([2.0.0],[],AC_MSG_ERROR("You need glib >= 2.0.0 to compile this."))
 PKG_CHECK_MODULES([LIBIDN], [libidn >= 0.3.0])
 PKG_CHECK_MODULES([LIBGADU], [libgadu >= 1.9.0])
+PKG_CHECK_MODULES([LIBCURL], [libcurl >= 7.0.0])
 
 AC_SUBST(LIBIDN_LIBS)
 AC_SUBST(LIBIDN_CFLAGS)

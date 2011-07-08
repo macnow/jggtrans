@@ -32,6 +32,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include "debug.h"
+#include "avatar.c"
 
 
 const char *search_instructions;
@@ -381,7 +382,7 @@ char *jid,*name=NULL,*str;
 GList *it;
 Contact *c;
 User *u;
-const char *uin, *first_name, *last_name, *nickname, *born, *city;
+const char *uin, *first_name, *last_name, *nickname, *born, *city, *photo;
 
 
 	if (gg_pubdir50_count(results)<1){
@@ -438,6 +439,16 @@ const char *uin, *first_name, *last_name, *nickname, *born, *city;
 	xmlnode_insert_tag(n1,"HOME");
 	n=xmlnode_insert_tag(n1,"LOCALITY");
 	xmlnode_insert_cdata(n,to_utf8(city),-1);
+
+	photo = get_avatar(uin);
+	if(strlen(photo)>1)
+	{
+		n1=xmlnode_insert_tag(vc,"PHOTO");
+		n=xmlnode_insert_tag(n1,"TYPE");
+		xmlnode_insert_cdata(n,"image/jpeg",-1);
+		n=xmlnode_insert_tag(n1,"BINVAL");
+		xmlnode_insert_cdata(n,photo,-1);
+	}
 
 	if (uin){
 		jid=jid_build(atoi(uin));
